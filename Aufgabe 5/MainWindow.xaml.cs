@@ -33,7 +33,7 @@ namespace FittsExercise
 
         private int experimentId = 1;
         // number of measurements per experiment
-        private int nbrOfTasks = 20;
+        private int nbrOfTasks = 2;
         // mouse pointer automatically set to start button once target is clicked
         private bool resetMousePos = false;
         // display new target once current target is clicked 
@@ -193,16 +193,24 @@ namespace FittsExercise
 
             //#toDo
             // open a message box, which displays the number of errors occurred in this experiment
-
+            string message = "Anzahl der Fehler = " + sessionErrorCount;
+            MessageBox.Show(message, "Fehleranzahl", MessageBoxButton.OK);
             // record this session's data in a file (name includes session id)
             string fileName = "testResults_" + resetMousePos + "_" + precuing + "_" + experimentId;
-            string fileNameExt = ".csv";
 
             //#toDo
             // open a save dialog, which allows for confirming or editing the filename
-
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = fileName; // Default file name
+            dlg.DefaultExt = ".csv"; // Default file extension
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                // Open document
+                fileName = dlg.FileName;
+            }
             //#toDo delete this line once the filename dialog is ready to use
-            fileName += fileNameExt;
+            
 
             // save document
             StreamWriter file = new StreamWriter(fileName);
@@ -222,6 +230,7 @@ namespace FittsExercise
             }
             file.Close();
 
+            
             // Close the application
             Close();
         }
