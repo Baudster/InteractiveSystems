@@ -70,7 +70,7 @@ namespace FittsExercise
             this.Target.Margin = new Thickness(myRandomizer.Next(0, 500), myRandomizer.Next(0, 500), 0, 0);
             if (!this.precuing) this.Target.Visibility = Visibility.Hidden;
 
-//#toDo
+            //#toDo
             // Build dialog for setting up the experiment
             // Instanciate UserWindow and show it as modal dialog
             // Transfer user input into the following variables
@@ -78,6 +78,15 @@ namespace FittsExercise
             //      nbrOfTasks
             //      resetMousePos
             //      precuing
+            Setup setup = new Setup();
+            bool? result = setup.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                experimentId = setup.Id;
+                nbrOfTasks = setup.NumberOfTasks;
+                resetMousePos = setup.ResetMousePosition;
+                precuing = setup.Precuing;
+            } 
 
             // prepare arrays for recording data
             this.distanceX = new int[nbrOfTasks];
