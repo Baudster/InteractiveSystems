@@ -233,7 +233,7 @@ namespace FittsExercise
                 // some debug on the screen
                 tbTimings.Text += "Timing " + i + ": " + (millisNeeded) + " errors: " + error[i] + '\n';
                 // write configuration data
-                file.Write(experimentId + ";" + resetMousePos + ";" + precuing);
+                file.Write(experimentId + ";" + precuing + ";" + resetMousePos);
                 // add measurements
                 file.WriteLine(";" + millisNeeded + ";" + distanceX[i] + ";" + distanceY[i] + ";" + targetW[i] + ";" + targetH[i] + ";" + error[i].ToString());
             }
